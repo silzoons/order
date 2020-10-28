@@ -2,8 +2,7 @@ package com.sil.eurder;
 
 import java.util.UUID;
 
-public class Customer {
-
+public class CustomerDto {
     private String firstName;
     private String lastName;
     private String email;
@@ -11,13 +10,8 @@ public class Customer {
     private String phoneNumber;
     private String id;
 
-    public Customer(String firstName, String lastName, String email, String address, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.id = UUID.randomUUID().toString();
+    public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber) {
+
     }
 
     public String getFirstName() {
