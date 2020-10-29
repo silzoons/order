@@ -1,5 +1,6 @@
-package com.sil.eurder;
+package com.sil.eurder.service;
 
+import com.sil.eurder.domain.Item;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class ItemService {
+
 
     Map<String, Item> items = new HashMap<>();
 

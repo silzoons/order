@@ -1,4 +1,4 @@
-package com.sil.eurder;
+package com.sil.eurder.service;
 
 import org.springframework.stereotype.Component;
 

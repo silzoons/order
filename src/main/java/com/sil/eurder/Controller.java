@@ -1,5 +1,13 @@
 package com.sil.eurder;
 
+import com.sil.eurder.domain.Item;
+import com.sil.eurder.dtos.CustomerDto;
+import com.sil.eurder.dtos.ItemDto;
+import com.sil.eurder.service.CustomerService;
+import com.sil.eurder.service.ItemService;
+import com.sil.eurder.service.OrderService;
+import com.sil.eurder.domain.user.Admin;
+import com.sil.eurder.domain.user.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +22,18 @@ import java.util.UUID;
 @RequestMapping(path = "/")
 public class Controller {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(Controller.class);
-    private final CustomerService customerService;
-    private final ItemService itemService;
-    private final OrderService orderService;
+    private static Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+    private CustomerService customerService;
+    private ItemService itemService;
+    private OrderService orderService;
+    private Admin admin;
 
     @Autowired
     public Controller(CustomerService customerService, ItemService itemService, OrderService orderService) {
         this.customerService = customerService;
         this.itemService = itemService;
         this.orderService = orderService;
+
     }
 
     @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -55,15 +65,15 @@ public class Controller {
     }
 
     @GetMapping("/customers")
-    public List<CustomerDto> getAllCustomers() {
-        List<Customer> customers = customerService.getAllCustomers();
+    public List<CustomerDto> getAllCustomers( @RequestHeader String adminId) {
+        List<Customer> customers = customerService.getAllCustomers(adminId);
         return EurderMapper.convertCustomerListToCustomerDtoList(customers);
     }
 
     @GetMapping(value = "/customer/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  CustomerDto getCustomerById(@PathVariable String customerId){
-    Customer customer = customerService.getCustomer(UUID.fromString(customerId));
-    return EurderMapper.convertCustomerToCustomerDto(customerService.getCustomer(UUID.fromString(customerId)));
+    public  CustomerDto getCustomerById(@PathVariable String customerId, @RequestHeader String adminId){
+    Customer customer = customerService.getCustomer(UUID.fromString(customerId), adminId);
+    return EurderMapper.convertCustomerToCustomerDto(customerService.getCustomer(UUID.fromString(customerId), adminId));
     }
 }
 

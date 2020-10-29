@@ -1,4 +1,4 @@
-package com.sil.eurder;
+package com.sil.eurder.dtos;
 
 import java.util.UUID;
 

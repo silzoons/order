@@ -1,4 +1,4 @@
-package com.sil.eurder;
+package com.sil.eurder.domain;
 
 import java.util.UUID;
 

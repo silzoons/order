@@ -1,5 +1,7 @@
-package com.sil.eurder;
+package com.sil.eurder.service;
 
+import com.sil.eurder.exceptiona.AdminPrivilegeException;
+import com.sil.eurder.domain.user.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -17,11 +19,17 @@ public class CustomerService {
         customers.put(UUID.fromString(customer.getId()), customer);
     }
 
-    public List<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers(String adminId) {
+        if (!adminId.equals("admin"))
+        {throw new AdminPrivilegeException("admin required");}
+
         return customers.values().stream().collect(Collectors.toList());
     }
 
-    public Customer getCustomer(UUID id) {
+    public Customer getCustomer(UUID id, String adminId) {
+
+        if (!adminId.equals("admin"))
+        {throw new AdminPrivilegeException("admin required");}
         return customers.get(id);
     }
 
