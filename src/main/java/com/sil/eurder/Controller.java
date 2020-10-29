@@ -41,6 +41,12 @@ public class Controller {
         return newItemDto;
     }
 
+    @GetMapping(value ="/items")
+    public List<ItemDto> getAllItems(){
+        List<Item> items = itemService.getAllItems();
+        return EurderMapper.convertItemListtoItemDtoList(items);
+    }
+
     @GetMapping("/customers")
     public List<CustomerDto> getAllCustomers(){
         List<Customer> customers = customerService.getAllCustomers();

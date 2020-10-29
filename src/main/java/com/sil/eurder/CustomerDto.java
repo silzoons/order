@@ -10,7 +10,7 @@ public class CustomerDto {
     private String phoneNumber;
     private String id;
 
-    public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber) {
+    public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber, String id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -19,8 +19,41 @@ public class CustomerDto {
         this.id = UUID.randomUUID().toString();
     }
 
-    public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber, String id) {
 
+    @Override
+    public String toString() {
+        return "CustomerDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {

@@ -29,7 +29,13 @@ public class EurderMapper {
 
     public static List<CustomerDto> convertCustomerListToCustomerDtoList(List<Customer> allCustomers) {
         return allCustomers.stream()
-                .map(customer -> new CustomerDto(customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getPhoneNumber(), customer.getId().toString()))
+                .map(customer -> new CustomerDto(customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getAddress(), customer.getPhoneNumber(), customer.getId()))
+                .collect(Collectors.toList());
+    }
+
+    public static List<ItemDto> convertItemListtoItemDtoList(List<Item> items) {
+        return items.stream()
+                .map(item -> new ItemDto(item.getName(), item.getDescription(), String.valueOf(item.getPrice()), String.valueOf(item.getAmountInStock()), item.getItemId()))
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +47,7 @@ public class EurderMapper {
         String address = customerToConvert.getAddress();
         String phoneNumber = customerToConvert.getPhoneNumber();
 
-        return new CustomerDto(firstName, lastName, email, address, phoneNumber);
+        return new CustomerDto(firstName, lastName, email, address, phoneNumber, id);
     }
 
     public static Customer convertCustomerDtoToCustomer(CustomerDto customerDtoToConvert) {
