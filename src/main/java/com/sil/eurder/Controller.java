@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -41,18 +42,28 @@ public class Controller {
         return newItemDto;
     }
 
-    @GetMapping(value ="/items")
-    public List<ItemDto> getAllItems(){
+    @GetMapping(value = "/items")
+    public List<ItemDto> getAllItems() {
         List<Item> items = itemService.getAllItems();
         return EurderMapper.convertItemListtoItemDtoList(items);
     }
 
-    @GetMapping("/customers")
-    public List<CustomerDto> getAllCustomers(){
-        List<Customer> customers = customerService.getAllCustomers();
-        return  EurderMapper.convertCustomerListToCustomerDtoList(customers);
+    @GetMapping(value = "/item/{itemId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ItemDto getItemById(@PathVariable String itemId) {
+        Item item = itemService.getItem(UUID.fromString(itemId));
+        return EurderMapper.convertItemtoItemDto(itemService.getItem(UUID.fromString(item.getItemId())));
     }
 
+    @GetMapping("/customers")
+    public List<CustomerDto> getAllCustomers() {
+        List<Customer> customers = customerService.getAllCustomers();
+        return EurderMapper.convertCustomerListToCustomerDtoList(customers);
+    }
 
+    @GetMapping(value = "/customer/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  CustomerDto getCustomerById(@PathVariable String customerId){
+    Customer customer = customerService.getCustomer(UUID.fromString(customerId));
+    return EurderMapper.convertCustomerToCustomerDto(customerService.getCustomer(UUID.fromString(customerId)));
+    }
 }
 

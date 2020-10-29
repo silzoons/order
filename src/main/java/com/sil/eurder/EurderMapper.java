@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 @Component
 public class EurderMapper {
 
-//    public static ItemDto convertItemtoItemDto(Item itemToConevrt) {
-//        String id = itemToConevrt.getItemId();
-//        String name = itemToConevrt.getName();
-//        String description = itemToConevrt.getDescription();
-//        String price = itemToConevrt.getPrice().toString;
-//        String amountInStock = itemToConevrt.getAmountInStock().toString;
-//        return new Item(name, description, price, amountInStock, id);
-//    }
+    public static ItemDto convertItemtoItemDto(Item itemToConevrt) {
+        String id = itemToConevrt.getItemId();
+        String name = itemToConevrt.getName();
+        String description = itemToConevrt.getDescription();
+        Double price = Double.valueOf(itemToConevrt.getPrice());
+        Integer amountInStock = itemToConevrt.getAmountInStock();
+        return new ItemDto(name, description, price, amountInStock, id);
+    }
 
     public static Item convertItemDtotoItem(ItemDto itemDtoToConevrt) {
         String id = itemDtoToConevrt.getItemId();
@@ -35,11 +35,11 @@ public class EurderMapper {
 
     public static List<ItemDto> convertItemListtoItemDtoList(List<Item> items) {
         return items.stream()
-                .map(item -> new ItemDto(item.getName(), item.getDescription(), String.valueOf(item.getPrice()), String.valueOf(item.getAmountInStock()), item.getItemId()))
+                .map(item -> new ItemDto(item.getName(), item.getDescription(), item.getPrice(), item.getAmountInStock(), item.getItemId()))
                 .collect(Collectors.toList());
     }
 
-    public CustomerDto convertCustomerToCustomerDto(Customer customerToConvert) {
+    public static CustomerDto convertCustomerToCustomerDto(Customer customerToConvert) {
         String id = customerToConvert.getId().toString();
         String firstName = customerToConvert.getFirstName();
         String lastName = customerToConvert.getLastName();

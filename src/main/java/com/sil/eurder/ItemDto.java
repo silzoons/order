@@ -7,10 +7,10 @@ public class ItemDto {
         private String itemId;
         private String name;
         private String description;
-        private String price;
-        private String amountInStock;
+        private double price;
+        private Integer amountInStock;
 
-        public ItemDto(String name, String description, String price, String amountInStock, String itemId) {
+        public ItemDto(String name, String description, double price, Integer amountInStock, String itemId) {
             this.name = name;
             this.description = description;
             this.price = price;
@@ -27,11 +27,11 @@ public class ItemDto {
         }
 
         public double getPrice() {
-            return Double.valueOf(price);
+            return price;
         }
 
         public int getAmountInStock() {
-            return Integer.valueOf(amountInStock);
+            return amountInStock;
         }
 
         public void setName(String name) {
