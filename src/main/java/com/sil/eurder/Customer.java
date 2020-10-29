@@ -11,13 +11,13 @@ public class Customer {
     private String phoneNumber;
     private String id;
 
-    public Customer(String firstName, String lastName, String email, String address, String phoneNumber) {
+    public Customer(String firstName, String lastName, String email, String address, String phoneNumber, String id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -42,5 +42,41 @@ public class Customer {
 
     public String getId() {
         return id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

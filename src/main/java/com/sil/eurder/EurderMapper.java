@@ -3,6 +3,7 @@ package com.sil.eurder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -28,12 +29,12 @@ public class EurderMapper {
 
     public static List<CustomerDto> convertCustomerListToCustomerDtoList(List<Customer> allCustomers) {
         return allCustomers.stream()
-                .map(customer -> new CustomerDto(customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getPhoneNumber(), customer.getId()))
+                .map(customer -> new CustomerDto(customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getPhoneNumber(), customer.getId().toString()))
                 .collect(Collectors.toList());
     }
 
     public CustomerDto convertCustomerToCustomerDto(Customer customerToConvert) {
-        String id = customerToConvert.getId();
+        String id = customerToConvert.getId().toString();
         String firstName = customerToConvert.getFirstName();
         String lastName = customerToConvert.getLastName();
         String email = customerToConvert.getEmail();
@@ -51,7 +52,7 @@ public class EurderMapper {
         String address = customerDtoToConvert.getAddress();
         String phoneNumber = customerDtoToConvert.getPhoneNumber();
 
-        return new Customer(firstName, lastName, email, address, phoneNumber);
+        return new Customer(firstName, lastName, email, address, phoneNumber, id);
     }
 }
 

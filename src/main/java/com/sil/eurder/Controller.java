@@ -1,9 +1,9 @@
 package com.sil.eurder;
 
-import org.springframework.http.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class Controller {
 
     @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDto createCustomer(@RequestBody CustomerDto newCustomerDto) {
-        LOGGER.info("Register new customer");
+        LOGGER.info("Request to register a new customer");
         Customer newCustomer = EurderMapper.convertCustomerDtoToCustomer(newCustomerDto);
         customerService.createCustomer(newCustomer);
         return newCustomerDto;
@@ -35,7 +35,7 @@ public class Controller {
 
     @PostMapping(value = "/item", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto createItem(@RequestBody ItemDto newItemDto) {
-        LOGGER.info("Register new item");
+        LOGGER.info("Request to register a new item");
         Item newItem = EurderMapper.convertItemDtotoItem(newItemDto);
         itemService.createItem(newItem);
         return newItemDto;

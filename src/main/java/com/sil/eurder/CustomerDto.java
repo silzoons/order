@@ -11,6 +11,15 @@ public class CustomerDto {
     private String id;
 
     public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public CustomerDto(String firstName, String lastName, String email, String address, String phoneNumber, String id) {
 
     }
 
