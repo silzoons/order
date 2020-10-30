@@ -1,11 +1,15 @@
 package com.sil.eurder;
 
 import com.sil.eurder.domain.Item;
+import com.sil.eurder.domain.ItemGroup;
+import com.sil.eurder.domain.Order;
 import com.sil.eurder.dtos.CustomerDto;
 import com.sil.eurder.dtos.ItemDto;
 import com.sil.eurder.domain.user.Customer;
+import com.sil.eurder.dtos.OrderDto;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +66,16 @@ public class EurderMapper {
         String phoneNumber = customerDtoToConvert.getPhoneNumber();
 
         return new Customer(firstName, lastName, email, address, phoneNumber, id);
+    }
+
+    public static Order convertOrderDtoToOrder(OrderDto newOrderDto) {
+        String customerId = newOrderDto.getCustomerId();
+        String orderId = newOrderDto.getOrderId();
+        List<ItemGroup> itemGroupList= newOrderDto.getItemGroupList();
+        Date shippingDate = newOrderDto.getShippingDate();
+        Double totalPrice = newOrderDto.getTotalPrice();
+
+        return new Order(customerId,orderId,itemGroupList,shippingDate,totalPrice);
     }
 }
 

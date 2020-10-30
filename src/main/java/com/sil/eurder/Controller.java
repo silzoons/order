@@ -1,8 +1,10 @@
 package com.sil.eurder;
 
 import com.sil.eurder.domain.Item;
+import com.sil.eurder.domain.Order;
 import com.sil.eurder.dtos.CustomerDto;
 import com.sil.eurder.dtos.ItemDto;
+import com.sil.eurder.dtos.OrderDto;
 import com.sil.eurder.service.CustomerService;
 import com.sil.eurder.service.ItemService;
 import com.sil.eurder.service.OrderService;
@@ -45,11 +47,19 @@ public class Controller {
     }
 
     @PostMapping(value = "/item", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ItemDto createItem(@RequestBody ItemDto newItemDto) {
+    public ItemDto createItem(@RequestBody ItemDto newItemDto, @RequestHeader String adminId) {
         LOGGER.info("Request to register a new item");
         Item newItem = EurderMapper.convertItemDtotoItem(newItemDto);
-        itemService.createItem(newItem);
+        itemService.createItem(newItem, adminId);
         return newItemDto;
+    }
+
+    @PostMapping(value = "/order", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public OrderDto createOrder(@RequestHeader String customerId, @RequestBody OrderDto newOrderDto){
+        LOGGER.info("Create a new order, or what do you think?");
+        Order neworder = EurderMapper.convertOrderDtoToOrder(newOrderDto);
+        orderService.createOrder(neworder, customerId);
+        return newOrderDto;
     }
 
     @GetMapping(value = "/items")

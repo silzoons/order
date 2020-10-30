@@ -33,6 +33,8 @@ public class CustomerService {
         return customers.get(id);
     }
 
-
+    public boolean userExists(UUID id) {
+        return customers.containsKey(id);
+    }
 
 }

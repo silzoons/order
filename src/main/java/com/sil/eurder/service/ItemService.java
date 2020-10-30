@@ -1,6 +1,8 @@
 package com.sil.eurder.service;
 
 import com.sil.eurder.domain.Item;
+import com.sil.eurder.domain.Order;
+import com.sil.eurder.exceptiona.AdminPrivilegeException;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,10 +17,14 @@ public class ItemService {
 
     Map<String, Item> items = new HashMap<>();
 
-    public void createItem(Item item){
+    public void createItem(Item item, String adminId){
+        if (!adminId.equals("admin"))
+        {throw new AdminPrivilegeException("admin required");}
         items.put(item.getItemId(), item);
     }
-
+    public boolean checkIfItemsAreInStock(Order neworder) {
+        return true;
+    }
 
     public List<Item> getAllItems() {
         return items.values().stream().collect(Collectors.toList());
