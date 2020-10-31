@@ -9,6 +9,7 @@ import com.sil.eurder.domain.user.Customer;
 import com.sil.eurder.dtos.OrderDto;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -72,7 +73,7 @@ public class EurderMapper {
         String customerId = newOrderDto.getCustomerId();
         String orderId = newOrderDto.getOrderId();
         List<ItemGroup> itemGroupList= newOrderDto.getItemGroupList();
-        Date shippingDate = newOrderDto.getShippingDate();
+        LocalDate shippingDate = newOrderDto.getShippingDate();
         Double totalPrice = newOrderDto.getTotalPrice();
 
         return new Order(customerId,orderId,itemGroupList,shippingDate,totalPrice);

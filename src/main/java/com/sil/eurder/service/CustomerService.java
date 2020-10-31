@@ -16,6 +16,18 @@ public class CustomerService {
     Map<UUID, Customer> customers = new HashMap<>();
 
     public void createCustomer(Customer customer){
+        if (customer.getFirstName() == null ||customer.getFirstName().equals("")) {
+            throw new IllegalArgumentException("Please enter the first name.");
+        }
+        if (customer.getLastName() == null ||customer.getLastName().equals("")) {
+            throw new IllegalArgumentException("Please enter the last name.");
+        }
+        if (customer.getAddress() == null ||customer.getAddress().equals("")) {
+            throw new IllegalArgumentException("Please enter the address.");
+        }
+        if (customer.getEmail() == null ||customer.getEmail().equals("")) {
+            throw new IllegalArgumentException("Please enter the email address.");
+        }
         customers.put(UUID.fromString(customer.getId()), customer);
     }
 

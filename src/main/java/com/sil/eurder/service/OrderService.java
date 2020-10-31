@@ -18,12 +18,12 @@ public class OrderService {
     Map<String, Order> orders = new HashMap<>();
 
     public void createOrder(Order neworder, String customerId) {
-        if(!customerService.userExists(UUID.fromString(customerId)))
-        throw new NotACustomerException("you must first register");
-        if(itemService.checkIfItemsAreInStock(neworder))
+        if (!customerService.userExists(UUID.fromString(customerId)))
+            throw new NotACustomerException("you must first register");
+
+        if (itemService.checkIfItemsAreInStock(neworder))
             neworder.setShippingDate(LocalDate.now().plusDays(DAYS_TO_ADD_WHEN_IN_STOCK));
         else neworder.setShippingDate(LocalDate.now().plusDays(DAYS_TO_ADD_WHEN_NOT_IN_STOCK));
-
 
 
         orders.put(neworder.getOrderId(), neworder);

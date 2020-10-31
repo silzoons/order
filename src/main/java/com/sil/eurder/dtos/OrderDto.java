@@ -2,6 +2,7 @@ package com.sil.eurder.dtos;
 
 import com.sil.eurder.domain.ItemGroup;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -10,10 +11,10 @@ public class OrderDto {
     private String customerId;
     private String orderId;
     private List<ItemGroup> itemGroupList;
-    private Date shippingDate;
+    private LocalDate shippingDate;
     private double totalPrice;
 
-    public OrderDto(String customerId, String orderId, List<ItemGroup> itemGroupList, Date shippingDate, double totalPrice) {
+    public OrderDto(String customerId, String orderId, List<ItemGroup> itemGroupList, LocalDate shippingDate, double totalPrice) {
         this.customerId = customerId;
         this.orderId = orderId;
         this.itemGroupList = itemGroupList;
@@ -45,11 +46,11 @@ public class OrderDto {
         this.itemGroupList = itemGroupList;
     }
 
-    public Date getShippingDate() {
+    public LocalDate getShippingDate() {
         return shippingDate;
     }
 
-    public void setShippingDate(Date shippingDate) {
+    public void setShippingDate(LocalDate shippingDate) {
         this.shippingDate = shippingDate;
     }
 

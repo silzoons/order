@@ -8,10 +8,10 @@ public class Order {
     private String customerId;
     private String orderId;
     private List<ItemGroup> itemGroupList;
-    private Date shippingDate;
+    private LocalDate shippingDate;
     private double totalPrice;
 
-    public Order(String customerId, String orderId, List<ItemGroup> itemGroupList, Date shippingDate, double totalPrice) {
+    public Order(String customerId, String orderId, List<ItemGroup> itemGroupList, LocalDate shippingDate, double totalPrice) {
         this.customerId = customerId;
         this.orderId = orderId;
         this.itemGroupList = itemGroupList;
@@ -43,7 +43,7 @@ public class Order {
         this.itemGroupList = itemGroupList;
     }
 
-    public Date getShippingDate() {
+    public LocalDate getShippingDate() {
         return shippingDate;
     }
 

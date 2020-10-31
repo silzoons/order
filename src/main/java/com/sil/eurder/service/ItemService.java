@@ -20,10 +20,23 @@ public class ItemService {
     public void createItem(Item item, String adminId){
         if (!adminId.equals("admin"))
         {throw new AdminPrivilegeException("admin required");}
+        if (item.getName() == null ||item.getName().equals("")) {
+            throw new IllegalArgumentException("Please provide a name for this item.");
+        }
+        if (item.getDescription() == null ||item.getDescription().equals("")) {
+            throw new IllegalArgumentException("Please provide a description for this item.");
+        }
+
+
         items.put(item.getItemId(), item);
     }
     public boolean checkIfItemsAreInStock(Order neworder) {
-        return true;
+        boolean result = true;
+        for (int i = 0; i < neworder.getItemGroupList().size(); i++) {
+            if (neworder.getItemGroupList().get(i).getItem().getAmountInStock()<items.get(neworder.getItemGroupList().get(i).getItem().getItemId()).getAmountInStock())
+            result = false;
+        }
+        return result;
     }
 
     public List<Item> getAllItems() {
