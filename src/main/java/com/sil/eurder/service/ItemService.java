@@ -33,7 +33,7 @@ public class ItemService {
     public boolean checkIfItemsAreInStock(Order neworder) {
         boolean result = true;
         for (int i = 0; i < neworder.getItemGroupList().size(); i++) {
-            if (neworder.getItemGroupList().get(i).getItem().getAmountInStock()<items.get(neworder.getItemGroupList().get(i).getItem().getItemId()).getAmountInStock())
+            if (neworder.getItemGroupList().get(i).getAmountOrdered()<items.get(neworder.getItemGroupList().get(i).getItem().getItemId()).getAmountInStock())
             result = false;
         }
         return result;
